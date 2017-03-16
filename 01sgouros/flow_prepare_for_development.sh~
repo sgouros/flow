@@ -1,0 +1,72 @@
+DATE="$(date +"%Y.%b.%d_%H.%M")"
+
+echo "--------- running: flow_prepare_for_development.sh ---------"
+echo "dropbox status:" dropbox status
+
+
+
+echo "1.1 delete logs to obtain space"
+echo -n "   (rm ~/Dropbox/RoR/code/aptana/flow/log/*)"
+echo -n " ..."
+rm ~/Dropbox/RoR/code/aptana/flow/log/*
+echo "done."
+echo " "
+
+echo -n "   1.2 delete tmp files to obtain space"
+echo -n "   (rm ~/Dropbox/RoR/code/aptana/flow/tmp/*)"
+echo -n " ..."
+rm ~/Dropbox/RoR/code/aptana/flow/tmp/*
+echo "done."
+echo " "
+
+echo "2. backup dev flow to home"
+
+echo -n "   2.1 creating directory ~/flowbackup/$DATE/"
+echo -n " ..."
+mkdir -p ~/flowbackup/$DATE/
+echo "done."
+
+echo -n "   2.2 copying directory ~/Dropbox/RoR/code/aptana/flow/ to ~/flowbackup/$DATE/"
+echo -n " ..."
+cp -R ~/Dropbox/RoR/code/aptana/flow/ ~/flowbackup/$DATE/
+echo "done."
+echo " "
+
+echo "3. backup dev flow to dropbox"
+
+echo -n "   3.1 creating directory ~/Dropbox/RoR/code/backup/flow/$DATE/"
+echo -n " ..."
+mkdir -p ~/Dropbox/RoR/code/backup/flow/$DATE/
+echo "done."
+
+echo -n "   3.2 copying directory ~/Dropbox/RoR/code/aptana/flow/ to ~/Dropbox/RoR/code/backup/flow/$DATE/"
+echo -n " ..."
+cp -R ~/Dropbox/RoR/code/aptana/flow/ ~/Dropbox/RoR/code/backup/flow/$DATE/
+echo "done."
+echo " "
+
+printf "4. Do you want to get the hot sqlite3 DB to develop? (y/n): "
+read INPT
+if [ "$INPT" = "y" ]; then 
+  echo "get hot sqlite3 to develop with"
+  echo -n "   (copy ~/Dropbox/RoR/htdocs/flow/db/development.sqlite3 to ~/Dropbox/RoR/code/aptana/flow/db/development.sqlite3)"
+  echo -n " ..."
+  cp -R ~/Dropbox/RoR/htdocs/flow/db/development.sqlite3 ~/Dropbox/RoR/code/aptana/flow/db/development.sqlite3
+  echo "done."
+  echo " "
+else
+  echo "keeping development database"
+  echo " "
+fi
+
+echo "5. running test suite"
+cd ~/Dropbox/RoR/code/aptana/flow/
+rake test:units
+
+echo "happy coding George!"
+
+
+
+
+
+

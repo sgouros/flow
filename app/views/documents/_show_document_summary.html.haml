@@ -1,0 +1,25 @@
+%span.overview_fieldset
+  - if document.owned_by?(current_user) or document.assigned_to?(current_user)
+    = link_to document.subject, edit_document_path(document)
+    %br/
+  - else
+    = link_to document.subject, document
+    %br/
+  = render 'show_departments_of_document', :document => document
+  %span.overview_label_first_level
+    = t :target_protocol
+    \:
+  %span.overview_data_first_level= document.target_protocol + "/" + document.target_date.to_formatted_s(:date_with_numbers)
+  %span.overview_label_first_level
+    = t :dispatch_stage
+    \:
+  %span.overview_data_first_level= document.dispatch_stage.description
+  %span.overview_label_first_level
+    = t :assignment_date
+    \:
+  %span.overview_data_first_level= document.assignment_date.to_formatted_s(:date_with_numbers)
+  = render 'show_users_of_document', :document => document
+  %span.overview_label_first_level
+    = t :dispatch_deadline
+    \:
+  %span.overview_data_first_level= document.dispatch_deadline.to_formatted_s(:date_with_numbers) if document.dispatch_deadline

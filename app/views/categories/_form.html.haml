@@ -1,0 +1,14 @@
+= form_for(@category) do |f|
+  - if @category.errors.any?
+    #error_explanation
+      %h2= t :following_errors_prohibited_saving
+      %ul
+        - @category.errors.full_messages.each do |msg|
+          %li= msg
+  - @back_link=true
+  .field
+    = f.label t(:description) +":"
+    = f.text_field :description
+  .standard_form_buttons
+    = link_to( t(:cancel), 'javascript:history.go(-1);', :class => 'button')
+    = f.submit( t(:submit), :class => 'form_submit')

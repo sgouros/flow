@@ -1,0 +1,16 @@
+<!-- BEGIN HEAD -->
+<(protocol_number)>
+<!-- END HEAD -->
+<!-- BEGIN AREA -->
+Αυτή είναι η area<w:t>Area: (Area Name)</w:t>
+<!-- END AREA -->
+<!-- BEGIN GOAL -->
+Στόχος<w:t>Goal: (Goal Name)</w:t><w:t>Objectives:</w:t>
+<!-- BEGIN OBJECTIVE -->
+<w:t>(Objective Name)</w:t>
+<!-- END OBJECTIVE -->
+<!-- END GOAL -->
+<!-- END AREA -->
+<!-- BEGIN FOOT -->
+good bye this is the footer
+<!-- END FOOT -->

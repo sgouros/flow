@@ -1,0 +1,12 @@
+- @navigation_path= t(:archived_documents)
+#documents
+  - if @documents
+    = paginate @documents
+    %fieldset
+      %p
+        - @documents.each do |doc|
+          %span.overview_fieldset
+            %span.overview_data_first_level=  link_to doc.full_target_protocol, show_document_path(doc)
+    = paginate @documents
+  - else
+    %p= t :no_documents_exist

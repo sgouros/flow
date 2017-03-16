@@ -1,0 +1,36 @@
+= form_for(@institution) do |f|
+  - if @institution.errors.any?
+    #error_explanation
+      %h2= t :following_errors_prohibited_saving
+      %ul
+        - @institution.errors.full_messages.each do |msg|
+          %li= msg
+  - @back_link=true
+  
+  .field
+    = f.label t(:name) +":"
+    = f.text_field :name
+
+
+  .standard_form_buttons
+    = link_to( t(:cancel), 'javascript:history.go(-1);', :class => 'button')
+    = f.submit( t(:submit), :class => 'form_submit')  
+
+  %br
+  %br
+  %br
+  %br
+  %br
+  .field
+    %span.label
+      = t :documents
+      \:
+    %span.data_no_border
+      %ul
+        - @institution.documents.each do |doc| 
+          %li
+            = link_to doc.full_title, doc
+            %br
+
+
+

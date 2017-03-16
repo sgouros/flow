@@ -1,0 +1,10 @@
+%span.overview_label_first_level
+  = document.users.count>1 ? t(:users) : t(:user)
+  \:
+%span.overview_data_first_level
+  - if document.users.any?
+    - document.users.each do |user|
+      = user.full_name
+      = "," unless user == document.users.last
+  - else
+    = t(:no_user)

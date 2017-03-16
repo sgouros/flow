@@ -1,0 +1,19 @@
+Θέμα: #{@document.subject}
+
+Αποστολέας: #{@document.institution.name}
+
+Πρωτ. παραλλαβής:#{@document.target_protocol + "/"+ @document.target_date.to_formatted_s(:date_with_numbers)}
+
+Κατηγορία εγγράφου: #{@document.category.description}#{@document.users.count == 1 ? "Xειριστής" : "Χειριστές"}:
+- @document.users.each do |u|
+  = u.full_name+" "
+Ημερομηνία ανάθεσης: #{@document.assignment_date.to_formatted_s(:date_with_numbers)}
+
+Αναθέτων: #{@document.owner.full_name}#{@document.departments.count == 1 ? "Τμήμα" : "Τμήματα"}:
+- @document.departments.each do |dep|
+  = dep.name+" "
+Προθεσμία διεκπεραίωσης: #{@document.dispatch_deadline.to_formatted_s(:date_with_numbers)}
+
+Εργασίες: #{@document.task unless @document.task.nil?}
+
+Παρατηρήσεις: #{@document.comments unless @document.comments.nil?}

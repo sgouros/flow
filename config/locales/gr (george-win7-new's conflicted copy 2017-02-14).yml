@@ -1,0 +1,212 @@
+gr:
+  flow: Flow
+  flow_description: Εφαρμογή ηλεκτρονικής χρέωσης εγγράφων και ανάθεσης εργασιών
+  edit_password: αλλαγή συνθηματικού
+  login: σύνδεση
+  logout: αποσύνδεση
+  welcome: καλώς όρισες
+  please_log_in_to_continue: παρακαλούμε συνδεθείτε στο σύστημα
+  logged_in: καλώς ορίσατε!
+  invalid_login_password_combination: μη αποδεκτός συνδυασμός αναγνωριστικού/κωδικού
+  logged_out: αποσυνδεθήκατε επιτυχώς
+  access_denied: απαγορεύεται η πρόσβαση
+  current_user: χειριστής
+  administrator: διαχειριστής
+  or: ή
+  to: προς
+  options: επιλογές
+  title_or_protocol: παρακαλώ εισάγετε θέμα ή πρωτόκολλο εγγράφου...
+  you_have_technical_support_message: "Flow: έχετε μήνυμα τεχνικής υποστήριξης"
+  edit: τροποποίηση
+  delete: διαγραφή
+  show: επισκόπηση
+  submit: καταχώρηση
+  search: αναζήτηση
+  search_results: αποτελέσματα αναζήτησης
+  back: επιστροφή
+  are_you_sure: "είστε σίγουρος-η;"
+  cancel: άκυρο
+  all_my_documents: όλα τα έγγραφά μου
+  my_overdue_documents: τα εκπρόθεσμα έγγραφά μου
+  no_documents_exist: δεν υπάρχουν έγγραφα
+  user_info: στοιχεία χειριστή
+  no_user: χωρίς χειριστή
+  
+ 
+  dear_mr_manager: Κύριε προϊστάμενε
+  dear_mrs_manager: Κυρία προϊσταμένη
+  
+  assigned_document: Χρέωση εγγράφου	
+  dispatched_document: Διεκπεραιώθηκε έγγραφο
+  updated_document: Επικαιροποίηση εγγράφου
+
+
+#---------------- institutions ---------------
+  new_institution: νέος φορέας
+  institution_added: o νέος φορέας αποθηκεύτηκε επιτυχώς
+  institution_updated: τα στοιχεία φορέα ενημερώθηκαν επιτυχώς
+  institution_deleted: ο φορέας διαγράφηκε επιτυχώς
+  institutions_info: στοιχεία φορέων
+  edit_institution: τροποποίηση στοιχείων φορέα
+  institutions: φορείς
+
+#---------------- categories ---------------
+  new_category: νέα κατηγορία
+  category_added: η κατηγορία εγγράφου αποθηκεύτηκε επιτυχώς
+  category_updated: τα στοιχεία κατηγορίας εγγράφου ενημερώθηκαν επιτυχώς
+  category_deleted: η κατηγορία εγγράφου διαγράφηκε επιτυχώς
+  categories_info: κατηγορίες εγγράφων
+  edit_category: τροποποίηση κατηγορίας εγγράφου
+  categories: κατηγορίες εγγράφων
+  description: περιγραφή
+  
+#--------------------------reports ---------------------
+  my_pending_documents: τα εκκρεμή έγγραφά μου
+  pending_documents: εκκρεμή έγγραφα
+  overdue_documents: εκπρόθεσμα έγγραφα
+  archived_documents: αρχειοθετημένα έγγραφα
+ #--------------------users-----------------------
+  user_added: τα στοιχεία χειριστή καταχηρήθηκαν με επιτυχία
+  user_updated: τα στοιχεία χειριστή ενημερώθηκαν με επιτυχία
+  users_info: στοιχεία χειριστών
+  user: χειριστής
+  user_deleted: τα στοιχεία χειριστή διαγράφηκαν με επιτυχία
+  user_details: στοιχεία χειριστή
+  new_user: νέος χειριστής
+  user_info: στοιχεία χειριστή
+  edit_user: αλλαγή στοιχείων χειριστή
+  edit_users: στοιχεία χειριστών
+  all_users: όλοι οι χειριστές
+  users: χειριστές
+      
+  name: όνομα
+  surname: επίθετο
+  phone: τηλέφωνο
+  email: ηλεκτρονικό ταχυδρομείο
+  password: κωδικός πρόσβασης
+  password_confirmation: επαλήθευση κωδικού
+  manager: προϊστάμενος
+  full_name: ονοματεπώνυμο  
+  
+#----------------------------documents ----------------------  
+  all_documents: σύνολο εγγράφων
+  documents: έγγραφα
+  document_details: αναλυτικά στοιχεία εγγράφου
+  editing_document: τροποποίηση στοιχείων εγγράφου
+  document_created: τα στοιχεία εγγράφου αποθηκεύθηκαν επιτυχώς
+  document_updated: τα στοιχεία εγγράφου ενημερώθηκαν επιτυχώς  
+#  new_entry: νέο έγγραφο
+  new_document: νέο έγγραφο
+  document_deleted: τα στοιχεία διαγράφηκαν επιτυχώς
+  document_info: στοιχεία εγγράφου  
+  
+  source_name: αποστολέας
+  source_protocol: πρωτόκολλο αποστολέα
+  source_date: ημερομηνία αποστολέα 
+  target_protocol: πρωτόκολλο παραλλαβής
+  target_date: ημερομηνία παραλλαβής
+  subject: θέμα
+  category_id: κατηγορία εγγράφου
+  department: τμήμα
+  departments: τμήματα
+  no_departments: δεν έχει επιλεγεί κάποιο τμήμα
+  assignment_date: ημερομηνία χρέωσης
+  user_id: χειριστής
+  task: εργασίες
+  dispatch_deadline: προθεσμία διεκπεραίωσης
+  dispatch_stage_id: στάδιο διεκπεραίωσης
+  dispatch_protocol: πρωτόκολλο διεκπεραίωσης
+  dispatch_date: ημερομηνία διεκπεραίωσης
+  comments: παρατηρήσεις
+  owner: αναθέτων
+  dispatch_stage: στάδιο διεκπεραίωσης
+  assignment_unit: μονάδα χρέωσης
+  
+#---------------------------email----------------------------
+  title: τίτλος
+  subject: θέμα
+  body: κείμενο
+  new_support_message: αίτημα τεχνικής υποστήριξης
+  support_message_successfully_created: το αίτημα σας απεστάλη
+  support: τεχνική υποστήριξη
+  send: αποστολή
+  reply: απάντηση
+  unsupported_users: Χειριστές που αιτούνται τεχνική υποστήριξη
+  support_messages: Μηνύματα τεχνικής υποστήριξης 
+  date: ημερομηνία
+  comments: παρατηρήσεις
+
+
+
+#---------------------- misc ----------------------
+#rails g kaminari:views default      rails g kaminari:config     config/initializers/kaminari_config.rb
+  views:
+    pagination:
+      previous: προηγούμενη
+      next: επόμενη
+      truncate: "..."
+  
+  datetime:
+    distance_in_words:
+      x_days: "ημέρες"
+      
+#------------------------------errors--------------------- 
+  following_errors_prohibited_saving: τα παρακάτω ζητήματα εμποδίζουν την αποθήκευση
+  no_department_selected: παρακαλώ επιλέξετε τουλάχιστον ένα τμήμα
+  no_user_selected: παρακαλώ επιλέξετε τουλάχιστον έναν χειριστή
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "- παρακαλώ συμπληρώστε όνομα"
+            surname: 
+              blank: "- παρακαλώ συμπληρώστε επίθετο"
+            phone: 
+              blank: "- παρακαλώ συμπληρώστε τηλέφωνο"
+            email:
+              too_short: "- η διεύθυνση ηλεκτρονικού ταχυδρομείου είναι πολύ μικρή"
+              invalid: "- παρακαλώ συμπληρώστε έγκυρη διεύθυνση ηλ. ταχυδρομείου"
+            password:
+              confirmation: "- παρακαλώ συμπληρώστε την επαλήθευση κωδικού"
+              too_short: "- παρακαλώ χρησιμοποιήστε περισσότερους χαρακτήρες για τον κωδικό πρόσβασής σας"
+              
+           
+        document:
+          attributes:
+            source_name: 
+              blank: "- παρακαλώ συμπληρώστε αποστολέα"
+            source_protocol:
+              blank: "- παρακαλώ συμπληρώστε πρωτόκολλο αποστολέα"
+            source_date:
+              blank: "- παρακαλώ συμπληρώστε ημερομηνία αποστολέα"
+            target_protocol:
+              blank: "- παρακαλώ συμπληρώστε πρωτόκολλο παραλλαβής"
+            tartget_date:
+              blank: "- παρακαλώ συμπληρώστε ημερομηνία παραλλαβής"
+            subject:
+              blank: "- παρακαλώ συμπληρώστε θέμα εγγράφου"
+        support_message:
+          attributes:
+            body:
+              blank:  "- παρακαλώ συμπληρώστε το μήνυμά σας"
+
+        institution:
+          attributes:
+            name: 
+              blank: "- παρακαλώ συμπληρώστε ονομασία"
+
+        category:
+          attributes:
+            description: 
+              blank: "- παρακαλώ συμπληρώστε περιγραφή"
+            
+            
+
+
+              
+
+  
+  
+  

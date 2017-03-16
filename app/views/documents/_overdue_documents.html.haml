@@ -1,0 +1,13 @@
+#documents
+  - if @departments
+    = paginate @departments
+    - @departments.each do |dep|
+      %fieldset
+        %legend.bright_legend= dep.name
+        %p
+          - dep.overdue_documents.each do |doc|
+            = render 'show_document_summary', :document => doc
+    = paginate @departments
+  - else
+    %p
+      = t :no_documents_exist

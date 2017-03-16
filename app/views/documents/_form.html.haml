@@ -1,0 +1,74 @@
+= form_for(@document) do |f|
+  - if @document.errors.any?
+    #error_explanation
+      %h2= t(:following_errors_prohibited_saving) +":"
+      %ul
+        - @document.errors.full_messages.each do |msg|
+          %li= msg
+  - @back_link=true
+  .field
+    = f.label t(:subject)+":"
+    = f.text_area :subject, :class => 'large_text_area'
+  .field
+    = f.label t(:target_protocol)+":"
+    = f.text_field :target_protocol, :disabled => @must_disable_some_controls
+  .field
+    = f.label t(:target_date)+":"
+    = f.date_select :target_date, :order => [:day, :month, :year], :use_month_numbers => true, :start_year => 2010, :end_year => Time.now.year+1, :disabled => @must_disable_some_controls
+  .field
+    = f.label t(:source_name)+":"
+    = f.select(:institution_id, @institutions_for_select_box, {}, {class: 'sel2'})
+  .field
+    = f.label t(:source_protocol)+":"
+    = f.text_field :source_protocol
+  .field
+    = f.label t(:source_date)+":"
+    = f.date_select :source_date, :order => [:day, :month, :year], :use_month_numbers => true, :start_year => 2010, :end_year => Time.now.year+1
+  .field
+    = f.label t(:category_id)+":"
+    = f.select(:category_id, Category.all.collect{|c| [c.description, c.id]})
+  .field
+    = @document.departments.count==1 ? f.label(t(:department)+":") : f.label(t(:departments)+":")
+    %span.check_box_area
+      - for department in Department.all
+        = check_box_tag "document[department_ids][]", department.id, @document.departments.include?(department)
+        = label_tag "document[department_ids][]", department.name, :for => "document[department_ids][]", :class => 'check_box_label'
+  .field
+    = f.label t(:owner)+":"
+    = f.label @document.owner.full_name, :class =>'fake_text_field'
+  .field
+    = f.label t(:assignment_date)+":"
+    = f.date_select :assignment_date, :order => [:day, :month, :year], :use_month_numbers => true, :start_year => 2012, :end_year => Time.now.year+1, :disabled => @must_disable_some_controls
+  .field
+    = @document.users.count==1 ? f.label(t(:user)+":") : f.label(t(:users)+":")
+    - if @must_disable_some_controls
+      %span.fake_text_field_d
+        - @document.users.each do |u|
+          = u.full_name 
+          = "," unless u == @document.users.last
+    - else
+      = f.collection_select(:user_ids, User.all_active_except_admins, :id, :full_name, {}, { :multiple => true, :class => 'multiple_selection'})
+  .field
+    = f.label t(:task)+":"
+    = f.text_area :task, :class => 'very_large_text_area'
+  .field
+    = f.label t(:dispatch_deadline)+":"
+    = f.date_select :dispatch_deadline, :order => [:day, :month, :year], :use_month_numbers => true, :start_year => 2012, :end_year => Time.now.year+1 , :disabled => @must_disable_some_controls
+  #dispatch_stage_id.field
+    = f.label t(:dispatch_stage_id)+":"
+    = f.select(:dispatch_stage_id, DispatchStage.all.collect{|ds| [ds.description, ds.id]})
+  #dispatch_protocol.field
+    = f.label t(:dispatch_protocol)+":"
+    = f.text_field :dispatch_protocol
+  #dispatch_date.field
+    = f.label t(:dispatch_date)+":"
+    = f.date_select :dispatch_date, :order => [:day, :month, :year], :use_month_numbers => true, :start_year => 2012, :end_year => Time.now.year+1
+  .field
+    = f.label t(:comments)+":"
+    = f.text_area :comments , :class => 'very_large_text_area'
+  .standard_form_buttons
+    = link_to( t(:cancel), 'javascript:history.go(-1);', :class => 'button')
+    = f.submit( t(:submit), :class => 'form_submit')
+
+
+

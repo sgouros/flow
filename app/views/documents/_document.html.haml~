@@ -1,0 +1,93 @@
+= div_for document do
+  - @back_link=true
+  .field
+    %span.label
+      = t :subject
+      \:
+    %span.data
+      = document.subject
+  .field
+    %span.label
+      = t :target_protocol
+      \:
+    %span.data
+      = document.target_protocol +  "/" + document.target_date.to_formatted_s(:date_with_numbers)
+  .field
+    %span.label
+      = t :source_name
+      \:
+    %span.data
+      = document.institution.name
+  .field
+    %span.label
+      = t :source_protocol
+      \:
+    %span.data
+      = document.source_protocol +  "/" + document.source_date.to_formatted_s(:date_with_numbers)
+  .field
+    %span.label
+      = t :category_id
+      \:
+    %span.data
+      = document.category.description
+  .field
+    %span.label
+      = document.departments.count == 1 ? t(:department) : t(:departments)
+      \:
+    %span.data
+      - if document.departments.any?
+        - document.departments.each do |dep|
+          = dep.name
+  .field
+    %span.label
+      = t :owner
+      \:
+    %span.data
+      = document.owner.full_name
+  .field
+    %span.label
+      = t :assignment_date
+      \:
+    %span.data
+      = document.assignment_date.to_formatted_s(:normal)
+  .field
+    %span.label
+      = t :task
+      \:
+    %span.data
+      = simple_format document.task
+
+  .field
+    = render 'show_users_of_document', :document => document
+
+  - if document.dispatch_deadline
+    .field
+      %span.label
+        = t :dispatch_deadline
+        \:
+      %span.data
+        = document.dispatch_deadline.to_formatted_s(:normal)
+  .field
+    %span.label
+      = t :dispatch_stage_id
+      \:
+    %span.data
+      = document.dispatch_stage.description
+  - if document.dispatched?
+    .field
+      %span.label
+        = t :dispatch_protocol
+        \:
+      %span.data
+        = document.dispatch_protocol +  "/" + document.dispatch_date.to_formatted_s(:date_with_numbers)
+  .field
+    %span.label
+      = t :comments
+      \:
+    %span.data
+      = simple_format document.comments
+  - if admin?
+    %span.actions
+      = link_to t(:edit), edit_document_path(document)
+      |
+      \#{link_to t(:delete), document, :confirm => t(:are_you_sure), :method => :delete}

@@ -1,0 +1,28 @@
+.sidebar
+  %ul
+    %li
+      %h3= t :options
+      %ul.blocklist
+        %li
+          = link_to ":: "+t(:my_pending_documents), "/my_pending_documents"
+        %li
+          = link_to ":: "+t(:my_overdue_documents), "/my_overdue_documents"
+        %li
+          = link_to ":: "+t(:all_my_documents), "/documents"
+        %li
+          = link_to ":: "+t(:pending_documents), "/pending_documents" if admin? or current_user.manager
+        %li
+          = link_to ":: "+t(:overdue_documents), "/overdue_documents" if admin? or current_user.manager
+        %li
+          = link_to ":: "+t(:archived_documents), "/archived_documents" if current_user.protocol? or admin? or current_user.manager
+        %li
+          = link_to ":: "+t(:all_documents), "/all_documents" if current_user.manager? or admin?
+
+
+    %li
+      %h3= t :search
+      %ul
+        %li
+          = form_tag search_results_path, :method=>'get' do
+            = text_field_tag  :search, params[:search], :id => 'search_field', :class=>"sidebarinput"
+            = submit_tag ">>", :name => nil, :class => 'formbutton'

@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+tmima_a:
+  id:	'3'
+  name:	'Τμήμα Α' 
+
+tmima_b:
+  id:	'4'
+  name:	'Τμήμα Β' 
+

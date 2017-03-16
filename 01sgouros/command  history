@@ -1,0 +1,33 @@
+rails new zeus
+  126  cd zeus
+  127  rake db:create
+  128  install therubyracer
+  129  gem install therubyracer
+  130  sudo gem install therubyracer
+  131  rake db:create
+  132  gem install execjs
+  133  sudo gem install execjs
+  134  rake db:create
+  135  rake assets:precompile
+  136  sudo apt-get install nodejs
+  137  rake db:create
+  138  rake db:create:all
+  139  rails dbconsole
+  140  cdruby
+  141  cd zeus
+  142  rake db:migrate
+  143  rails generate model Applicant
+  144  rake db:migrate
+  145  rails generate model Decision
+  146  rake db:migrate
+  147  rails generate model User
+  148  rake db:migrate
+  149  rails generate controller decisions
+  150  rails generate scaffold
+  151  rails generate scaffold Decision
+  152  rails generate scaffold Decision --skip-migration
+  153  rails destroy scaffold Decisions
+  154  rails generate scaffold Decision protocol:string authority:string date:datetime verdict:boolean reason:text comments:text --skip-migration
+  155  rails generate scaffold Applicant name:string surname:string father_name:string place_of_birth:string date_of_birth:datetime marital_status:string --skip-migration
+  156  history
+

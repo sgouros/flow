@@ -1,0 +1,10 @@
+%span.overview_label_first_level
+  = document.departments.count>1 ? t(:departments) : t(:department)
+  \:
+%span.overview_data_first_level
+  - if document.departments.any?
+    - document.departments.each do |dep|
+      = dep.name
+      \ 
+  - else
+    = t(:no_department)

@@ -1,0 +1,19 @@
+- @navigation_path= t(:archived_documents)
+
+#documents
+  - if @documents
+
+    = form_tag(register_to_central_protocol_db_path) do
+
+      - @documents.each do |doc|
+        %p
+          = check_box_tag "document_ids[]", doc.id
+          = link_to doc.full_title, document_path(doc)
+      .standard_form_buttons
+        = submit_tag( t(:register_to_central_protocol_db), :class => 'form_submit')
+      
+  - else
+    %p= t :no_documents_exist
+    
+    
+

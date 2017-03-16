@@ -1,0 +1,47 @@
+στο gemfile:
+gem "select2-rails"
+
+bundle install
+
+στο application.js:
+//= require select2 στο τέλος
+
+
+στο bond.js:
+$(".sel2").select2(); 
+
+
+αντιγράφω το select2.js και τα jquery libraries στα javascript 
+
+αντιγράφω το select2.css στα stylesheets
+
+
+στο bond.css:
+@import url("select2.css");
+
+.sel2 {
+  width: 610px;
+  margin-left:5px;
+}
+
+στο application.html.haml layout:
+    = javascript_include_tag 'application', 'bond.js', "select2.js"
+
+
+
+στον controller:
+  def setup_institutions_for_select_box  
+    @institutions_for_select_box = Institution.all.collect{|i| [i.name, i.id]}
+    i @institutions_for_select_box.inspect
+  end
+
+και την βάζω σε new create edit update
+
+
+στη _form:
+= f.select(:institution_id, @institutions_for_select_box, {}, {class: 'sel2'})
+
+
+rake assets:clear
+
+

@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+dimos_komotinis:
+  id:	'1'
+  name: 'Δήμος Κομοτηνής'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+dimos_kavalas:
+  id:	'2'
+  name: 'Δήμος Καβάλας'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+nosokomeio_komotinis:
+  id:	'3'
+  name: 'Νοσοκομείο Κομοτηνής'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+nosokomeio_kavalas:
+  id:	'4'
+  name: 'Νοσοκομείο Καβάλας'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+deya_komotinis:
+  id:	'5'
+  name: 'ΔΕΥΑ Κομοτηνής'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+deya_kavalas:
+  id:	'6'
+  name: 'ΔΕΥΑ Καβάλας'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+dte_komotinis:
+  id:	'7'
+  name: 'ΔΤΕ ΠΕ Κομοτηνής'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+dte_kavalas:
+  id:	'8'
+  name: 'ΔΤΕ ΠΕ Καβάλας'
+  created_at: '2012-03-17 20:13:10'
+  updated_at: '2012-03-18 09:59:35'
+
+

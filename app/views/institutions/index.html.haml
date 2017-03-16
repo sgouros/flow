@@ -1,0 +1,9 @@
+- @navigation_path= t(:institutions_info)
+%span.actions
+  = link_to t(:new_institution), new_institution_path
+#institutions
+  %p
+  %ul
+    - @institutions.each do |i|
+      %li
+        = link_to i.name, edit_institution_path(i)

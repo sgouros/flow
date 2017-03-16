@@ -1,0 +1,39 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= t :following_errors_prohibited_saving
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  - @back_link=true
+  .field
+    = f.label t(:name) +":"
+    = f.text_field :name
+  .field
+    = f.label t(:surname) +":"
+    = f.text_field :surname
+  .field
+    = @user.departments.count==1 ? f.label(t(:department)+":") : f.label(t(:departments)+":")
+    %span.check_box_area
+      - for department in Department.all
+        = check_box_tag "user[department_ids][]", department.id, @user.departments.include?(department)
+        = label_tag "user[department_ids][]", department.name, :for => "user[department_ids][]", :class => 'check_box_label'
+  .field
+    = f.label t(:phone) +":"
+    = f.text_field :phone
+  .field
+    = f.label t(:email) +":"
+    = f.text_field :email
+  .field
+    = f.label t(:password) +":"
+    = f.password_field :password
+  .field
+    = f.label t(:password_confirmation) +":"
+    = f.password_field :password_confirmation
+  - if admin?
+    .field
+      = f.label t(:manager) +":"
+      = f.check_box :manager
+  .standard_form_buttons
+    = link_to( t(:cancel), 'javascript:history.go(-1);', :class => 'button')
+    = f.submit( t(:submit), :class => 'form_submit')

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id:	'1'
+  description:	'υπο επεξεργασία' 
+
+two:
+  id:	'2'
+  description:	'προς υπογραφή' 
+
+three:
+  id:	'3'
+  description:	'διεκπεραιώθηκε' 

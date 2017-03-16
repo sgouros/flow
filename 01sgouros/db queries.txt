@@ -1,0 +1,49 @@
+@u=User.create( {:name => 'Μαρίν',:manager => 'true',:surname => 'Κούρου',:phone => '25313 52178',:email => 'mkourou@remth.gr',:hashed_password => '2asd',:created_at => '2012-03-17 20:13:10', :updated_at => '2012-03-18 09:59:35' })
+
+
+@d=Document.create ({ :id => '100', :source_name => 'Δήμος Παγγαίου', :source_protocol => '20761', :source_date => '27/04/2012', :target_protocol => '34396/1549', :target_date => '02/05/2012', :subject => 'Αίτημα έγκρισης διάθεσης', :category_id => '1' })
+
+
+@d=Document.create ({ :source_name => '43sdΔήμ3ος Παγγαίου', :source_protocol => '20761', :source_date => '27/04/2012', :target_protocol => '34396/1549', :target_date => '02/05/2012', :subject => 'Αίτημα έγκρισης διάθεσης', :category_id => '1' })
+
+@d.users
+
+@d.users.
+
+
+@us2=User.create({ :manager => 'false', :name =>'123george', :surname =>'sgouros', :phone => '23320', :email => 'sgouros@anro.gr', :hashed_password => '57f3b058534660559b443e263da01e3e28e7d131' })
+
+
+----------------------------------------------------------------
+2 Απριλίου 2014
+
+@ds2=DispatchStage.find(2); @ds2.description='σε παύση'; @ds2.save
+@ds3=DispatchStage.find(3); @ds3.description='προς υπογραφή'; @ds3.save
+@ds4=DispatchStage.create :description=>'διεκπεραιώθηκε';@ds4.save
+@ds5=DispatchStage.create :description=>'στο αρχείο';@ds5.save
+
+
+απενεργοποιώ τον email notifier
+@d = Document.where('documents.dispatch_stage_id == 3') 
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 4)}
+
+@d = Document.where('documents.dispatch_stage_id == 2') 
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 3)}
+
+@d=Document.where("documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ?", "Αρχείο", "Αρχειο","ΑΡΧΕΙΟ","αρχειο","ΑΡΧΕΊΟ","αρχείο")
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 5)}
+
+@d=User.find_by_id(8).documents
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 5)}
+
+ενεργοποιώ τον email notifier
+
+----------------------------------------------------
+7 Απρ 2014
+
+@u=User.find(8)
+@u.documents.each {|doc| doc.users.delete(@u)}
+User.find(8).delete
+
+
+----------------------------------------------------

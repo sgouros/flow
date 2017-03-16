@@ -1,0 +1,26 @@
+.sidebar
+  %ul
+    %li
+      %h3= t :options
+      %ul.blocklist
+        %li
+          = link_to "1Tα έγγραφα που έχω αναθέσει ανά ημερομηνία ανάθεσης", documents_path
+        %li
+          = link_to "2Tα έργα που έχω αναθέσει ανα ποιον τα ανάθεσα", documents_path
+        %li
+          = link_to t(:by_assignment_unit), documents_path+'/?order=assignment_unit_id'
+        %li
+          = link_to t(:by_dispatch_stage), documents_path+'/?order=dispatch_stage_id'
+        %li
+          = link_to t(:by_category), documents_path+'/?order=category_id'
+        %li
+          = link_to t(:by_dispatch_deadline), documents_path+'/?order=dispatch_deadline'
+        %li
+          = link_to t(:by_dispatch_stage), documents_path+'/?order=dispatch_stage_id'
+    %li
+      %h3= t :search
+      %ul
+        %li
+          = form_tag search_results_path, :method=>'get' do
+            = text_field_tag  :search, params[:search], :id => 'search_field', :class=>"sidebarinput"
+            = submit_tag ">>", :name => nil, :class => 'formbutton'

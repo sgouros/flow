@@ -1,0 +1,22 @@
+@ds2=DispatchStage.find(2); @ds2.description='σε παύση'; @ds2.save
+@ds3=DispatchStage.find(3); @ds3.description='προς υπογραφή'; @ds3.save
+@ds4=DispatchStage.create :description=>'διεκπεραιώθηκε';@ds4.save
+@ds5=DispatchStage.create :description=>'στο αρχείο';@ds5.save
+
+
+απενεργοποιώ τον email notifier
+@d = Document.where('documents.dispatch_stage_id == 3') 
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 4)}
+
+@d = Document.where('documents.dispatch_stage_id == 2') 
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 3)}
+
+@d=Document.where("documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ? OR documents.dispatch_protocol LIKE ?", "Αρχείο", "Αρχειο","ΑΡΧΕΙΟ","αρχειο","ΑΡΧΕΊΟ","αρχείο")
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 5)}
+
+@d=User.find_by_id(8).documents
+@d.each { |doc| doc.update_attribute('dispatch_stage_id', 5)}
+
+ενεργοποιώ τον email notifier
+
+

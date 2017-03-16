@@ -1,0 +1,164 @@
+class Document < ActiveRecord::Base
+
+  validates :source_protocol, 	:presence => true
+  validates :source_date, 			:presence => true
+  validates :target_protocol, 	:presence => true
+  validates :target_date, 			:presence => true
+  validates :subject, 					:presence => true
+  validates :institution_id,    :presence => true
+  validate  :require_at_least_one_department
+  validate  :require_at_least_one_user
+ 
+  has_and_belongs_to_many :users 
+  has_and_belongs_to_many :departments
+  belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
+  belongs_to :dispatch_stage
+  belongs_to :category
+  belongs_to :institution
+
+  after_initialize do |doc| 
+  #  Rails.logger.debug("----------------existing_users set-----------------------\n\n\n")
+     @existing_users = users.dup
+  #  Rails.logger.debug(@existing_users)  
+  end
+  
+  def full_title
+    target_protocol + " " + subject
+  end 
+
+
+  # καλείται όταν δημιουργείται ένα έγγραφο
+  def email_all_users_about_assigned
+    users.each do |u|
+      Notifier.email_user_about_assigned_document(u,self)
+    end
+  end
+
+  # καλείται όταν προστίθενται και άλλοι χρήστες μετά από update
+  def email_new_users_about_assigned
+    if(@existing_users)    
+      new_users = users - @existing_users
+    else
+      new_users = users
+    end
+
+    if new_users.count >0
+      new_users.each do |u|
+        Notifier.email_user_about_assigned_document(u, self)
+      end
+    end
+  end
+
+  # καλείται μετά από κάθε update
+  def email_old_users_about_updated
+    old_users = @existing_users
+
+    old_users.each do |u|
+      Notifier.email_user_about_updated_document(u,self) unless self.owned_by?(u)
+    end
+  end
+
+  # καλείται μετά από κάθε update
+  def email_all_users_about_dispatched
+    users.each do |u|
+      Notifier.email_user_about_dispatched_document(u, self) unless self.owned_by?(u)
+    end
+    Notifier.email_user_about_dispatched_document(owner, self)
+  end 
+
+
+  def dispatched?
+    return false unless dispatch_stage.id==G::DDS_DISPATCHED
+    return true
+  end
+
+  def archived?
+    return false unless dispatch_stage.id==G::DDS_ARCHIVED
+    return true
+  end
+
+  def owned_by?(user)
+    return false unless user.is_a? User
+
+    if owner==user
+      logger.info"\n\n[INFO] User #{user.id} #{user.email} is owner of document #{target_protocol}\n\n"
+    return true
+    else
+      logger.info"\n\n[INFO] User #{user.id} #{user.email} ------- IS NOT OWNER of document #{target_protocol}\n\n"
+    return false
+    end
+
+  end
+
+  def assigned_to?(user)
+    return false unless user.is_a? User
+
+    if users.find(user.id)
+      logger.info"\n\n[INFO] User #{user.id} #{user.email} ------- is assigned to document #{target_protocol}\n\n"
+    return true
+    end
+    rescue ActiveRecord::RecordNotFound
+    logger.info"\n\n[INFO] User #{user.id} #{user.email} ------- IS NOT assigned to document #{target_protocol}\n\n"
+    return false
+  end
+
+  def self.archived
+    where("documents.dispatch_stage.id =?",G::DDS_ARCHIVED)
+  end
+
+
+  def full_target_protocol
+    target_protocol +  "/" + target_date.to_formatted_s(:date_with_numbers)
+  end
+
+  def full_source_protocol
+    source_protocol +  "/" + source_date.to_formatted_s(:date_with_numbers)
+  end
+
+  def inspect
+    text = "\n\n" +
+    "Document id:"                    + "#{id}"                 + "\n" +
+    "\tinstitution_id:"    + "\t\t"   + "#{institution_id}"   + " #{institution.name}" + "\n" +
+    "\tsource_protocol:"   + "\t"     + "#{source_protocol}"    + "\n" +
+    "\tsource_date:"       + "\t\t"   + "#{source_date}"        + "\n" +
+    "\ttarget_protocol:"   + "\t"     + "#{target_protocol}"    + "\n" +
+    "\ttarget_date:"       + "\t\t"   + "#{target_date}"        + "\n" +
+    "\tsubject:"           + "\t\t"   + "#{subject}"            + "\n" +
+    "\tcategory_id:"       + "\t\t"   + "#{category_id}"        + " #{category.description}" + "\n" +
+    "\tassignment_date:"   + "\t"     + "#{assignment_date}"    + "\n" +
+    "\ttask:"              + "\t\t\t" + "#{task}"               + "\n" +
+    "\tdispatch_deadline:" + "\t"     + "#{dispatch_deadline}"  + "\n" +
+    "\tdispatch_stage_id:" + "\t"     + "#{dispatch_stage_id}"  + " #{dispatch_stage.description}" + "\n" +
+    "\tdispatch_protocol:" + "\t"     + "#{dispatch_protocol}"  + "\n" +
+    "\tdispatch_date:"     + "\t\t"   + "#{dispatch_date}"      + "\n" +
+    "\tcomments:"          + "\t\t"   + "#{comments}"           + "\n" +
+    "\towner_id:"          + "\t\t"   + "#{owner_id}"           + " #{owner.full_name}" + "\n" +
+    "\tcreated_at:"        + "\t\t"   + "#{created_at}"         + "\n" +
+    "\tupdated_at:"        + "\t\t"   + "#{updated_at}"         + "\n"
+
+
+    text+="\tdepartments:"
+    departments.each do |d|
+      text+="\t\t"   + "#{d.id}"+" "+"#{d.name}"         + "\n\t"
+    end
+    
+    text+="users:"
+    users.each do |u|
+      text+="\t\t\t"   + "#{u.id}"+" "+"#{u.full_name}"         + "\n"+"\t"
+    end
+
+    text
+
+  end
+
+  private
+
+  def require_at_least_one_department
+    errors.add :base, I18n.t(:no_department_selected) if departments.length==0
+  end
+
+  def require_at_least_one_user
+    errors.add :base, I18n.t(:no_user_selected)  if users.length==0
+  end
+
+end

@@ -1,0 +1,100 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+
+one:
+  id: '1'
+  description: 'ΣΑΕ  031'
+
+two:
+  id: '2'
+  description: 'ΣΑΕΠ 031'
+
+three:
+  id: '3'
+  description: 'ΣΑΕΠ 131'
+
+four:
+  id: '4'
+  description: 'ΣΑΕΠ 231'
+
+five:
+  id: '5'
+  description: 'ΣΑΕΠ 0312'
+
+six:
+  id: '6'
+  description: 'ΣΑΕΠ 0313'
+
+seven:
+  id: '7'
+  description: 'ΣΑΕΠ 0318'
+
+eight:
+  id: '8'
+  description: 'ΣΑΕΠ 431'
+
+nine:
+  id: '9'
+  description: 'ΣΑΕΠ 3312'
+
+ten:
+  id: '10'
+  description: 'ΣΑΕΠ 3318'
+
+eleven:
+  id: '11'
+  description: 'ΣΑΕΠ 0313'
+
+twelve:
+  id: '12'
+  description: 'ΣΑΝΑ 020/3'
+
+thirteen:
+  id: '13'
+  description: 'ΣΑΝΑ 036/3'
+
+fourteen:
+  id: '14'
+  description: 'ΣΑΝΑ 008/8'
+
+fifteen:
+  id: '15'
+  description: 'ΣΑΝΑ 020/8'
+
+sixteeen:
+  id: '16'
+  description: 'ΣΑΝΑ 036/8'
+
+seventeen:
+  id: '17'
+  description: 'ΣΑΝΑ 041/8'
+
+eighteen:
+  id: '18'
+  description: 'ΣΑΝΑ 010/8'
+
+nineteen:
+  id: '19'
+  description: 'ΓΛΚ'
+
+twenty:
+  id: '20'
+  description: 'Χρηματοδοτήσεις'
+
+twentyone:
+  id: '21'
+  description: 'Διάφορα ΠΔΕ'
+
+twentytwo:
+  id: '22'
+  description: 'Τουριστική Προβολή'
+
+twentythree:
+  id: '23'
+  description: 'Επιχειρησιακό Πρόγραμμα ΑΜΘ'
+
+twentyfour:
+  id: '24'
+  description: 'Εγκύκλιοι - Ενημερωτικά'
+
+

@@ -1,0 +1,10 @@
+- @navigation_path= t(:categories_info)
+%span.actions
+  = link_to t(:new_category), new_category_path
+#categories
+  %p
+  %ul
+    - @categories.each do |c|
+      %li
+        = link_to c.description, edit_category_path(c)
+

@@ -1,0 +1,10 @@
+#documents
+  - if @documents
+    = paginate @documents
+    %fieldset
+      %p
+        - @documents.each do |doc|
+          = render 'show_document_summary', :document => doc
+    = paginate @documents
+  - else
+    %p= t :no_documents_exist

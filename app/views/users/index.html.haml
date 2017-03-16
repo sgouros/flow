@@ -1,0 +1,20 @@
+#users
+  %span.actions
+    = link_to t(:new_user), new_user_path
+  %fieldset
+    %legend= t(:users_info)+": "
+    %br/
+    = paginate @users
+    %br/
+    - @users.each do |u|
+      %p
+        %b
+          = link_to u.surname + " " + u.name, u
+        %span.actions
+          = link_to t(:edit), edit_user_path(u)
+          |
+          \#{link_to t(:delete), u, :confirm => t(:are_you_sure), :method => :delete}
+        %br/
+        = u.email
+        %br/
+    = paginate @users

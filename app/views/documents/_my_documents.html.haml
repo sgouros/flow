@@ -1,0 +1,35 @@
+#documents
+  - if @documents and @documents.size > 0
+    = paginate @documents
+    - @documents.each do |doc|
+      - if current_user.admin?
+        %span.actions
+          = link_to t(:delete), d, :confirm => t(:are_you_sure), :method => :delete
+      %p
+        = link_to doc.subject, edit_document_path(doc)
+        %br/
+        = render 'show_departments_of_document', :document => doc
+        %span.overview_label_first_level
+          = t :target_protocol
+          \:
+        %span.overview_data_first_level
+          = doc.target_protocol + "/" + doc.target_date.to_formatted_s(:date_with_numbers)
+        %span.overview_label_first_level
+          = t :dispatch_deadline
+          \:
+        %span.overview_data_first_level
+          = doc.dispatch_deadline.to_formatted_s(:date_with_numbers) if doc.dispatch_deadline
+
+        = render 'show_users_of_document', :document => doc
+
+        %span.overview_label_first_level
+          = t :dispatch_stage
+          \:
+        %span.overview_data_first_level
+          = doc.dispatch_stage.description
+    
+    = paginate @documents
+
+  - else
+    %p
+      = t :no_documents_exist

@@ -1,0 +1,49 @@
+= div_for user do
+  %fieldset
+    %legend
+      = t :user_details
+      \:
+    .field
+      %span.label
+        = t :name
+        \:
+      %span.data
+        = user.name
+    .field
+      %span.label
+        = t :surname
+        \:
+      %span.data
+        = user.surname
+    .field
+      %span.label
+        = t :phone
+        \:
+      %span.data
+        = user.phone
+    .field
+      %span.label
+        = t :email
+        \:
+      %span.data
+        = user.email
+    - if admin?
+      .field
+        %span.label
+          = t :hashed_password
+          \:
+        %span.data
+          = user.hashed_password
+    .field
+      %span.label
+        = t :manager
+        \:
+      %span.data
+        = user.manager
+  - if admin?
+    %span.actions
+      = link_to t(:edit), edit_user_path(user)
+      |
+      \#{link_to t(:delete), user, :confirm => t(:are_you_sure), :method => :delete}
+  %br/
+  %br/
