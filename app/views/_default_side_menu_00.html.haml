@@ -21,8 +21,11 @@
 
     %li
       %h3= t :search
+      
       %ul
         %li
           = form_tag search_results_path, :method=>'get' do
             = text_field_tag  :search, params[:search], :id => 'search_field', :class=>"sidebarinput"
             = submit_tag ">>", :name => nil, :class => 'formbutton'
+
+      %p= "Χρησιμοποιήστε * στην αρχή του όρου αναζήτησης, για περιορισμό της αναζήτησης μόνο σε πρωτόκολλα αποστολέα"

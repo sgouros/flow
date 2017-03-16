@@ -139,9 +139,15 @@ class DocumentsController < ApplicationController
   end
 
   def search_results 
-    condition = "%" + params[:search] + "%"   
-    @documents = Document.where("(documents.subject LIKE ? OR documents.target_protocol LIKE ? OR documents.source_protocol LIKE ? OR documents.comments LIKE ?)",
+    if params[:search].start_with?('*')
+      params[:search].slice!(0)
+      condition = "%" + params[:search] + "%"
+      @documents = Document.where("(documents.source_protocol LIKE ?)",condition).order("documents.dispatch_stage_id, documents.dispatch_deadline").page(params[:page]).per(20)   
+    else
+      condition = "%" + params[:search] + "%"   
+      @documents = Document.where("(documents.subject LIKE ? OR documents.target_protocol LIKE ? OR documents.source_protocol LIKE ? OR documents.comments LIKE ?)",
           condition, condition, condition, condition).order("documents.dispatch_stage_id, documents.dispatch_deadline").page(params[:page]).per(20)
+    end
   end 
   
   # Τα έγγραφα του current_user τα οποία είναι ακόμη αδιεκπεραίωτα
